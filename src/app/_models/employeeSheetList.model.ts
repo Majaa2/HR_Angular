@@ -1,0 +1,43 @@
+import { Employee } from "./employee.model";
+import { SheetList } from "./sheetList.model";
+
+export class EmployeeSheetList{
+    id!: number;
+    regularWorkSum!: number;
+    overtimeWorkSum!: number;
+    nightWorkSum!: number;
+    workWeekdaySum!: number;
+    workHolidaysSum!: number;
+    paidLeaveSum!: number;
+    unpaidLeaveSum!: number;
+    stimulationSum!: number;
+    breastfeedingSum!: number;
+    paidUp42DaysSum!: number;
+    paidOver42DaysSum!: number;
+    vacationSum!: number;
+    holidaysPaidHolidaysSum!: number;
+    suspensionSum!: number;
+    workOnHolidaySum!: number;
+    overtimeWorkOf22Sum!: number;
+    overtimeWorkOfnumber6Sum!: number;
+    extraordinaryWorkSum!: number;
+    workSecondShiftSum!: number;
+    doubleWorkSum!: number;
+    workTurnusSum!: number;
+    passiveDutySum!: number;
+    differenceBetweenLessPaidWagesSum!: number;
+    differenceBetweenPaidSalarySum!: number;
+    regularWorkOfTraineesSum!: number;
+    suspension15Sum!: number;
+    suspension3numberSum!: number;
+    employeeId!: number;
+    employee!: Employee;
+    sheetListId!: number;
+    sheetList!: SheetList;
+    created!: Date;
+    modfied!: Date;
+    createdBy!: string;
+    modifiedBy!: string;
+    deleted!: boolean;
+    active!: boolean;
+}

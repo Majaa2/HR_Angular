@@ -1,0 +1,556 @@
+/* Sidebar */
+
+@import '../../../styles.scss';
+@import '../../../id-theme.scss';
+.sidebar {
+  // overflow: auto;
+  height: calc(100vh - #{$navbar-height});
+  background: $primary;
+  font-family: $type1-regular;
+  padding: 0;
+  width: $sidebar-width-lg;
+  z-index: 99;
+  transition: width $action-transition-duration $action-transition-timing-function,
+    background $action-transition-duration $action-transition-timing-function;
+  -webkit-transition: width $action-transition-duration $action-transition-timing-function,
+    background $action-transition-duration $action-transition-timing-function;
+  -moz-transition: width $action-transition-duration $action-transition-timing-function,
+    background $action-transition-duration $action-transition-timing-function;
+  -ms-transition: width $action-transition-duration $action-transition-timing-function,
+    background $action-transition-duration $action-transition-timing-function;
+  height: 100%;
+
+  .nav {
+    overflow: hidden;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    &:not(.sub-menu) {
+      padding-bottom: 60px;
+      overflow: auto;
+      height: 100vh;
+    }
+
+    .nav-item {
+      padding: 0 $sidebar-menu-padding-x;
+      @include transition-duration(0.25s);
+      transition-property: background;
+      -webkit-transition-property: background;
+      .collapse {
+        z-index: 999;
+      }
+
+      .nav-link {
+        @include display-flex;
+        @include align-items(center);
+        white-space: nowrap;
+        padding: $sidebar-menu-padding-y 0 $sidebar-menu-padding-y 0;
+        color: #fff;
+        @include transition-duration(0.45s);
+        transition-property: color;
+        -webkit-transition-property: color;
+        cursor: pointer;
+
+        i {
+          color: #fff;
+
+          &.menu-icon {
+            font-size: $sidebar-icon-font-size;
+            line-height: 1;
+            padding-right: 5px;
+            // margin-left: auto;
+            .rtl & {
+              margin-left: 0;
+              margin-right: auto;
+            }
+            color: #fff;
+            &:before {
+              vertical-align: middle;
+            }
+          }
+
+          &.menu-arrow {
+            font: normal normal normal 24px/1 "Material Design Icons";
+            line-height: 1;
+            font-size: $sidebar-icon-font-size;
+            margin-left: auto;
+            .rtl & {
+              margin-left: 0;
+              margin-right: auto;
+            }
+            color: #fff;
+            &:before {
+              content: "\f0141";
+              font-size: inherit;
+              color: inherit;
+            }
+            + .menu-icon {
+              margin-left: 0.25rem;
+              margin-bottom: 0.25rem;
+              .rtl & {
+                margin-left: 0;
+                margin-right: 0.25rem;
+              }
+            }
+          }
+        }
+
+        .menu-title {
+          color: inherit;
+          display: inline-block;
+          font-size: $sidebar-menu-font-size;
+          line-height: 1;
+          vertical-align: middle;
+          padding-top: 3px;
+        }
+
+        .badge {
+          margin-right: auto;
+          margin-left: 1rem;
+        }
+
+        &[aria-expanded="true"] {
+          .menu-arrow {
+            &:before {
+              content: "\F0140";
+            }
+          }
+        }
+      }
+
+      &.active {
+        border-right: 4px solid $accent;
+        .nav-link {
+          .menu-title {
+            color: $accent;
+            font-family: $type1-medium;
+          }
+          i {
+            color: $accent;
+          }
+        }
+      }
+
+      &:hover {
+        &:not(.active) {
+          -ms-transform: scale(1.1); /* IE 9 */
+          -webkit-transform: scale(1.1); /* Safari 3-8 */
+          transform: scale(1.1);
+          background: $sidebar-menu-hover-bg;
+        }
+      }
+      &.sidebar-actions {
+        margin-top: 1rem;
+        .nav-link {
+          border-top: 0;
+          display: block;
+          height: auto;
+        }
+        &:hover {
+          background: initial;
+          .nav-link {
+            color: initial;
+          }
+        }
+      }
+    }
+
+    &:not(.sub-menu) {
+      > .nav-item {
+        &:hover {
+          &:not(.nav-category):not(.nav-profile) {
+            > .nav-link {
+              color: $sidebar-menu-hover-color;
+            }
+          }
+        }
+      }
+    }
+    &.sub-menu {
+      margin-bottom: 20px;
+      margin-top: 0;
+      list-style: none;
+
+      .nav-item {
+        padding: 0;
+        .nav-link {
+          color: #fff;
+          padding: $sidebar-submenu-item-padding;
+          position: relative;
+          font-size: $sidebar-submenu-font-size;
+          line-height: 1;
+          height: auto;
+          border-top: 0;
+          &:before {
+            content: "\F054";
+            font-family: "Material Design Icons";
+            display: block;
+            position: absolute;
+            left: 0px;
+            .rtl & {
+              left: auto;
+              right: 0;
+            }
+            top: 50%;
+            @include transform(translateY(-50%));
+            color: lighten($sidebar-submenu-color, 10%);
+            font-size: 0.75rem;
+          }
+          &.active {
+            color: $accent;
+            background: transparent;
+          }
+          &:hover {
+            color: $sidebar-submenu-hover-color;
+          }
+        }
+        &:hover {
+          -ms-transform: scale(1.1); /* IE 9 */
+          -webkit-transform: scale(1.1); /* Safari 3-8 */
+          transform: scale(1.1);
+          // background: transparent;
+        }
+      }
+    }
+  }
+}
+
+
+// Sidebar icon only layout start
+:host-context(.sidebar-icon-only) {
+  @media (min-width: 992px) {
+    .sidebar {
+      // overflow: auto;
+      width: $sidebar-width-icon;
+      .nav {
+        overflow: visible;
+        margin-left: 0;
+        margin-right: 0;
+        .nav-item {
+          z-index: 10;
+          padding: 0 1rem;
+          position: relative;
+          .nav-link {
+            display: block;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            text-align: center;
+            position: static;
+            .menu-title,
+            .badge,
+            .menu-sub-title {
+              display: none;
+            }
+            .menu-title {
+              @include border-radius(0 5px 5px 0px);
+              background: $sidebar-menu-hover-bg;
+            }
+            i {
+              &.menu-icon {
+                margin-right: 0;
+                margin-left: 0;
+                margin-bottom: 0;
+              }
+              &.menu-arrow {
+                display: none;
+              }
+            }
+            &[aria-expanded] {
+              .menu-title {
+                @include border-radius(0 5px 0 0px);
+              }
+            }
+          }
+          .collapse {
+            display: none;
+          }
+          &.hover-open {
+            .nav-link {
+              z-index: 9;
+              .menu-title {
+                @include display-flex;
+                @include align-items(center);
+                background: $sidebar-menu-hover-bg;
+                padding: 0.5rem 1.4rem;
+                left: $sidebar-width-icon;
+                position: absolute;
+                text-align: left;
+                top: 0;
+                bottom: 0;
+                width: $icon-only-collapse-width;
+                z-index: 9;
+                line-height: 1.8;
+                -webkit-box-shadow: 4px 0px 7px 0px rgba(182, 185, 189, 0.25);
+                box-shadow: 4px 0px 7px 0px rgba(182, 185, 189, 0.25);
+                &:after {
+                  display: none;
+                }
+              }
+            }
+            .collapse,
+            .collapsing {
+              display: block;
+              background: $primary;
+              @include border-radius(0 0 5px 0);
+              position: absolute;
+              left: $sidebar-width-icon;
+              width: $icon-only-collapse-width;
+              -webkit-box-shadow: 4px 4px 7px 0px rgba(182, 185, 189, 0.25);
+              box-shadow: 4px 4px 7px 0px rgba(182, 185, 189, 0.25);
+            }
+          }
+          &.nav-profile {
+            padding: 0 0.3rem;
+            .nav-link {
+              .nav-profile-text {
+                display: none;
+              }
+              .nav-profile-badge {
+                display: none;
+              }
+            }
+          }
+        }
+        &:not(.sub-menu) {
+          .nav-item {
+            &.active {
+              border-radius: 0;
+            }
+            &:hover :active {
+              .nav-link {
+                border-radius: 0;
+              }
+            }
+          }
+        }
+        &.sub-menu {
+          background-color: $primary;
+          padding: $sidebar-icon-only-submenu-padding;
+          .nav-item {
+            .nav-link {
+              text-align: left;
+              // padding-left: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// Sidebar icon only layout end
+
+/* style for off-canvas menu*/
+:host-context(.sidebar-hidden) {
+  @media (max-width: 991px) {
+    .sidebar {
+      -webkit-transition: width 0.75s ease-in-out;
+      -moz-transition: width 0.75s ease-in-out;
+      -o-transition: width 0.75s ease-in-out;
+      transition: width 0.75s ease-in-out;
+
+      width: 0;
+    }
+  }
+}
+/* style for off-canvas menu*/
+@media screen and (max-width: 991px) {
+  .sidebar-offcanvas {
+    overflow: auto;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    box-shadow: 0 4px 13px 0 rgba(0, 0, 0, 20%), 0 6px 20px 0 rgba(0, 0, 0, 70%);
+    background: $primary;
+    font-family: $type1-regular;
+    padding: 0;
+    width: $sidebar-width-lg;
+    z-index: 15;
+    transition: width $action-transition-duration $action-transition-timing-function,
+      background $action-transition-duration $action-transition-timing-function;
+    -webkit-transition: width $action-transition-duration $action-transition-timing-function,
+      background $action-transition-duration $action-transition-timing-function;
+    -moz-transition: width $action-transition-duration $action-transition-timing-function,
+      background $action-transition-duration $action-transition-timing-function;
+    -ms-transition: width $action-transition-duration $action-transition-timing-function,
+      background $action-transition-duration $action-transition-timing-function;
+    height: 100%;
+
+    .nav {
+      overflow: hidden;
+      flex-wrap: nowrap;
+      flex-direction: column;
+      &:not(.sub-menu) {
+        padding-bottom: 60px;
+      }
+
+      .nav-item {
+        padding: 0 $sidebar-menu-padding-x;
+        @include transition-duration(0.25s);
+        transition-property: background;
+        -webkit-transition-property: background;
+        .collapse {
+          z-index: 999;
+        }
+
+        .nav-link {
+          @include display-flex;
+          @include align-items(center);
+          white-space: nowrap;
+          padding: $sidebar-menu-padding-y 0 $sidebar-menu-padding-y 0;
+          color: #fff;
+          @include transition-duration(0.45s);
+          transition-property: color;
+          -webkit-transition-property: color;
+          cursor: pointer;
+
+          i {
+            color: #fff;
+
+            &.menu-icon {
+              font-size: $sidebar-icon-font-size;
+              line-height: 1;
+              padding-right: 5px;
+              // margin-left: auto;
+              .rtl & {
+                margin-left: 0;
+                margin-right: auto;
+              }
+              color: #fff;
+              &:before {
+                vertical-align: middle;
+              }
+            }
+
+            &.menu-arrow {
+              font: normal normal normal 24px/1 "Material Design Icons";
+              line-height: 1;
+              font-size: $sidebar-icon-font-size;
+              margin-left: auto;
+              .rtl & {
+                margin-left: 0;
+                margin-right: auto;
+              }
+              color: #fff;
+              &:before {
+                content: "\f0141";
+                font-size: inherit;
+                color: inherit;
+              }
+              + .menu-icon {
+                margin-left: 0.25rem;
+                margin-bottom: 0.25rem;
+                .rtl & {
+                  margin-left: 0;
+                  margin-right: 0.25rem;
+                }
+              }
+            }
+          }
+
+          .menu-title {
+            color: inherit;
+            display: inline-block;
+            font-size: $sidebar-menu-font-size;
+            line-height: 1;
+            vertical-align: middle;
+            padding-top: 3px;
+          }
+
+          .badge {
+            margin-right: auto;
+            margin-left: 1rem;
+          }
+
+          &[aria-expanded="true"] {
+            .menu-arrow {
+              &:before {
+                content: "\F0140";
+              }
+            }
+          }
+        }
+
+        &.active {
+          border-right: 4px solid $accent;
+          .nav-link {
+            .menu-title {
+              color: $accent;
+              font-family: $type1-medium;
+            }
+            i {
+              color: $accent;
+            }
+          }
+        }
+
+        &:hover {
+          &:not(.active) {
+            background: $sidebar-menu-hover-bg;
+          }
+        }
+        &.sidebar-actions {
+          margin-top: 1rem;
+          .nav-link {
+            border-top: 0;
+            display: block;
+            height: auto;
+          }
+          &:hover {
+            background: initial;
+            .nav-link {
+              color: initial;
+            }
+          }
+        }
+      }
+
+      &:not(.sub-menu) {
+        > .nav-item {
+          &:hover {
+            &:not(.nav-category):not(.nav-profile) {
+              > .nav-link {
+                color: $sidebar-menu-hover-color;
+              }
+            }
+          }
+        }
+      }
+      &.sub-menu {
+        margin-bottom: 20px;
+        margin-top: 0;
+        list-style: none;
+
+        .nav-item {
+          padding: 0;
+          .nav-link {
+            color: #fff;
+            padding: $sidebar-submenu-item-padding;
+            position: relative;
+            font-size: $sidebar-submenu-font-size;
+            line-height: 1;
+            height: auto;
+            border-top: 0;
+            &:before {
+              content: "\F054";
+              font-family: "Material Design Icons";
+              display: block;
+              position: absolute;
+              left: 0px;
+              .rtl & {
+                left: auto;
+                right: 0;
+              }
+              top: 50%;
+              @include transform(translateY(-50%));
+              color: lighten($sidebar-submenu-color, 10%);
+              font-size: 0.75rem;
+            }
+            &.active {
+              color: $accent;
+              background: transparent;
+            }
+          }
+        }
+      }
+    }
+  }
+}

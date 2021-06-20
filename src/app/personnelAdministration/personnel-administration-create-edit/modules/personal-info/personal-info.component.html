@@ -1,0 +1,205 @@
+<form matForm [formGroup]="form" style="margin-top: 10px;display: flex; flex-direction: column;">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Šifra</mat-label>
+                        <input type="text" matInput formControlName="Code" />
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <label class="text" style="display: block;zoom:80%">Spol*:</label>
+                    <mat-radio-group formControlName="Sex">
+                        <mat-radio-button value="m" style="padding-right: 8px;" [checked]="true">M</mat-radio-button>
+                        <mat-radio-button value="f">Ž</mat-radio-button>
+                     <mat-error *ngIf="getPersonalForm.Sex.hasError('required')">
+                    Obavezan unos!
+                </mat-error> 
+                    </mat-radio-group>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Bračni status*</mat-label>
+                        <select matNativeControl formControlName="MarriageStatus">
+                            <option value="U braku">U braku</option>
+                            <option value="Neoženjen/Neudata">Neoženjen/Neudata</option>
+                            <option value="Razveden/Razvedena">Razveden/Razvedena</option>
+                            <option value="Udovac/Udovica">Udovac/Udovica</option>
+                        </select>
+                    <mat-error *ngIf="getPersonalForm.MarriageStatus.hasError('required')">
+                    Obavezan unos!
+                </mat-error> 
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Djevojačko prezime</mat-label>
+                        <input type="text" matInput formControlName="MaidenName" />
+                    </mat-form-field>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Ime*</mat-label>
+                        <input type="text" matInput formControlName="FirstName" />
+                        <mat-error *ngIf="getPersonalForm.FirstName.hasError('required')">
+                        Obavezan unos!
+                    </mat-error>
+                    </mat-form-field>
+
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Prezime*</mat-label>
+                        <input type="text" matInput formControlName="LastName" />
+                        <mat-error *ngIf="getPersonalForm.LastName.hasError('required')">
+                        Obavezan unos!
+                    </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Nacionalnost*</mat-label>
+                        <input type="text" matInput formControlName="Nacionality" />
+                        <mat-error *ngIf="getPersonalForm.Nacionality.hasError('required')">
+                    Obavezan unos!
+                </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Državljanstvo*</mat-label>
+                        <input type="text" matInput formControlName="Citizenship" />
+                        <mat-error *ngIf="getPersonalForm.Citizenship.hasError('required')">
+                        Obavezan unos!
+                    </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Datum rođenja*</mat-label>
+                        <input matInput [matDatepicker]="pickerBirth" formControlName="DateOfBirth" />
+                        <mat-datepicker-toggle
+                          matSuffix
+                          [for]="pickerBirth"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker #pickerBirth></mat-datepicker>
+                        <mat-error *ngIf="getPersonalForm.DateOfBirth.hasError('required')">
+                        Obavezan unos!
+                    </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                        <mat-form-field appearance="fill">
+                                <mat-label>
+                                    Mjesto rođenja*</mat-label>
+                                <select matNativeControl formControlName="PlaceOfBirth">
+                                <option *ngFor="let city of cities;" [value]="city.Name">{{city.Name}}</option>
+                                </select>
+                        <mat-error *ngIf="getPersonalForm.PlaceOfBirth.hasError('required')">
+                            Obavezan unos!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Ime oca*</mat-label>
+                        <input type="text" matInput formControlName="FathersName" />
+                        <mat-error *ngIf="getPersonalForm.FathersName.hasError('required')">
+                        Obavezan unos!
+                    </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <label class="text" style="display: block;zoom:80%">Vozačka dozvola*:</label>
+                    <mat-radio-group formControlName="DriversLicence">
+                        <mat-radio-button value="1" style="padding-right: 8px;">Da</mat-radio-button>
+                        <mat-radio-button value="0" [checked]="true">Ne</mat-radio-button>
+                        <mat-error *ngIf="getPersonalForm.DriversLicence.hasError('required')">
+                        Obavezan unos!
+                    </mat-error>
+                    </mat-radio-group>
+                </div>
+              
+                <div class="col-md-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Kategorija VD</mat-label>
+                        <select matNativeControl formControlName="DLCategory" [disabled]="getPersonalForm.DriversLicence.value == 'false'">
+                            <option value="-">---</option>
+                            <option value="AM">AM</option>
+                            <option value="A1">A1</option>
+                            <option value="A2">A2</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="BE">BE</option>
+                            <option value="C1">C1</option>
+                            <option value="C1E">C1E</option>
+                            <option value="C">C</option>
+                            <option value="CE">CE</option>
+                            <option value="D1">D1</option>
+                            <option value="D1E">D1E</option>
+                            <option value="D">D</option>
+                            <option value="DE">DE</option>
+                            <option value="F">F</option>
+                            <option value="G">G</option>
+                            <option value="H">H</option>
+                        </select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>JMBG*</mat-label>
+                        <input type="text" matInput formControlName="JMBG" />
+                    <mat-error *ngIf="getPersonalForm.JMBG.hasError('required')">
+                        Obavezan unos!
+                    </mat-error>
+                    <mat-error *ngIf="!getPersonalForm.JMBG.hasError('required') && (getPersonalForm.JMBG.hasError('minLength') || getPersonalForm.JMBG.hasError('maxLength'))">
+                       JMBG mora sadržavati 13 znamenki!
+                    </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Osobna iskaznica*</mat-label>
+                        <input type="text" matInput formControlName="IdNumber" />
+                        <mat-error *ngIf="getPersonalForm.IdNumber.hasError('required')">
+                        Obavezan unos!
+                    </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

@@ -1,0 +1,26 @@
+
+@import "../../id-theme.scss";
+
+
+.mat-card {
+    max-width: 400px;
+    text-align: center;
+    margin: auto;
+    margin-top: 5%;
+  }
+
+.title{
+    color: darken($primary, 30%);
+}
+.logo {
+    height: 40px;
+}
+.name{
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.54);
+
+}
+.mat-checkbox{
+    text-align: start !important;
+    width: 100% !important;
+}

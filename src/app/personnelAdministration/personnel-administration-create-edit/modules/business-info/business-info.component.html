@@ -1,0 +1,106 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="titleHeader">
+            <h6>Edukacije</h6>
+            <hr />
+        </div>        
+    </div>
+    <div class="col-md-8">
+        <div class="titleHeader">
+            <h6>Poslovni podatci</h6>
+            <hr />
+        </div>        
+    </div>
+</div>
+<form matForm [formGroup]="form">
+    <div class="row">
+        <div class="col-md-4">
+            <mat-form-field appearance="fill">
+                <mat-label>Stručna sprema*</mat-label>
+                <select matNativeControl formControlName="Qualifications">
+                            <option value="-">NK</option>
+                            <option value="AM">PK, NSS</option>
+                            <option value="A1">KV</option>
+                            <option value="A2">KV, SSS</option>
+                            <option value="A">VK</option>
+                            <option value="B">VŠS</option>
+                            <option value="BE">VSS</option>
+                            <option value="C1">Magistar</option>
+                            <option value="C1E">Doktor</option>
+                        </select>
+                <mat-error *ngIf="getBusinessForm.Qualifications.hasError('required')">
+                Obavezan unos!
+            </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Zvanje*</mat-label>
+                <input type="text" matInput formControlName="Profession" />
+                <mat-error *ngIf="getBusinessForm.Profession.hasError('required')">
+                Obavezan unos!
+            </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Obrazovna institucija*</mat-label>
+                <input type="text" matInput formControlName="EduInstitution" />
+                
+                <mat-error *ngIf="getBusinessForm.EduInstitution.hasError('required')">
+                Obavezan unos!
+            </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Kategorija obrazovanja*</mat-label>
+                <!-- <input type="text" matInput formControlName="EducationCategoryId" /> -->
+                <select matNativeControl formControlName="EducationCategoryId">
+                    <option *ngFor="let ec of educationCategories;" [value]="ec.Id">{{ec.Name}}</option>
+                </select>
+                <mat-error *ngIf="getBusinessForm.EducationCategoryId.hasError('required')">
+                Obavezan unos!
+            </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="fill">
+                <mat-label>Odjel</mat-label>
+                <select matNativeControl formControlName="Department">
+                    <option *ngFor="let department of departments;" [value]="department">{{department.Name}}</option>
+                </select>
+                <!-- <mat-error *ngIf="getBusinessForm.Department.hasError('required')">
+                Obavezan unos!
+            </mat-error> -->
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Radno mjesto*</mat-label>
+                <!-- <input type="text" matInput formControlName="WorkId" /> -->
+                <select matNativeControl formControlName="WorkId">
+                    <option *ngFor="let work of works;" [value]="work.Id">{{work.Name}}</option>
+                </select>
+                <mat-error *ngIf="getBusinessForm.WorkId.hasError('required')">
+                Obavezan unos!
+            </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Podružnica</mat-label>
+                <select matNativeControl formControlName="Branch">
+                    <option *ngFor="let branch of branches;" [value]="branch">{{branch.Name}}</option>
+                </select>
+            </mat-form-field>
+        </div><div class="col-md-4">
+            <mat-form-field appearance="fill">
+                <mat-label>Funkcija</mat-label>
+
+                <select matNativeControl formControlName="Function">
+                    <option *ngFor="let function of functions;" [value]="function">{{function.Name}}</option>
+                </select>
+            </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Aktivnost</mat-label>
+            <input matInput [matDatepicker]="pickerActive" formControlName="Active" />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="pickerActive"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerActive></mat-datepicker>
+        </mat-form-field>
+        </div>
+    </div>
+</form>

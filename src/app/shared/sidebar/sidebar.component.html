@@ -1,0 +1,129 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+    <li class="nav-item" click="" [ngClass]="{ 'active': dashboard.isActive }">
+      <a class="nav-link" routerLink="dashboard" routerLinkActive #dashboard="routerLinkActive">
+        <i class="mdi mdi-home menu-icon"></i>
+        <span class="menu-title">Početna</span>
+      </a>
+    </li>
+    <li class="nav-item" click="" [ngClass]="{ 'active': employee.isActive }">
+      <a class="nav-link" routerLink="Employee" routerLinkActive #employee="routerLinkActive">
+        <i class="mdi mdi-account-multiple menu-icon"></i>
+        <span class="menu-title">Kadrovska administracija</span>
+      </a>
+    </li>
+    <li class="nav-item" click="" [ngClass]="{'active' : seminars.isActive || certificates.isActive || vendors.isActive}">
+      <a class="nav-link" (click)="learningCollapsed = !learningCollapsed" [attr.aria-expanded]="learningCollapsed" aria-controls="learning">
+        <i class="mdi mdi-bank menu-icon"></i>
+        <span class="menu-title">Upravljanje školovanjem</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="learning" [ngbCollapse]="!learningCollapsed">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" routerLink="Seminars" routerLinkActive="active" #seminars="routerLinkActive"><i class="material-icons">label_important</i>Seminari</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="Certificates" routerLinkActive="active" #certificates="routerLinkActive"><i class="material-icons">label_important</i>Certifikati</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="Vendors" routerLinkActive="active" #vendors="routerLinkActive"><i class="material-icons">label_important</i>Vendori</a></li>
+          <!-- <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/breadcrumbs" routerLinkActive="active" #breadcrumbs="routerLinkActive"><i class="mdi mdi-bank menu-icon"></i>Breadcrumbs</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/dropdowns" routerLinkActive="active" #dropdowns="routerLinkActive"><i class="mdi mdi-bank menu-icon"></i>Dropdowns</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/modals" routerLinkActive="active" #modals="routerLinkActive"><i class="mdi mdi-bank menu-icon"></i>Modals</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/notifications" routerLinkActive="active" #notifications="routerLinkActive"><i class="mdi mdi-bank menu-icon"></i>Notifications</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/progressbar" routerLinkActive="active" #progressbar="routerLinkActive"><i class="mdi mdi-bank menu-icon"></i>Progress bar</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/pagination" routerLinkActive="active" #pagination="routerLinkActive"><i class="mdi mdi-bank menu-icon"></i>Pagination</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/tabs" routerLinkActive="active" #tabs="routerLinkActive"><i class="mdi mdi-bank menu-icon"></i>Tabs</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/typography" routerLinkActive="active" #typography="routerLinkActive"><i class="mdi mdi-bank menu-icon"></i>Typography</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/tooltips" routerLinkActive="active" #tooltips="routerLinkActive"><i class="mdi mdi-bank menu-icon"></i>Tooltips</a></li> -->
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item" click="" [ngClass]="{ 'active': absences.isActive }">
+      <a class="nav-link" routerLink="Absences" routerLinkActive #absences="routerLinkActive">
+        <i class="mdi mdi-calendar-multiple menu-icon"></i>
+        <span class="menu-title">Upravljanje odsustvima</span>
+      </a>
+    </li>
+    <li class="nav-item" click="" [ngClass]="{ 'active': overtime.isActive }">
+      <a class="nav-link" routerLink="Overtime" routerLinkActive #overtime="routerLinkActive">
+        <i class="mdi mdi-clock menu-icon"></i>
+        <span class="menu-title">Prekovremeni sati</span>
+      </a>
+    </li>
+    <li class="nav-item" click="" [ngClass]="{'active' : functions.isActive || departments.isActive || works.isActive || branches.isActive || cities.isActive }">
+      <a class="nav-link" (click)="organisationCollapsed = !organisationCollapsed" [attr.aria-expanded]="organisationCollapsed" aria-controls="organisation">
+        <i class="mdi mdi-account-settings menu-icon"></i>
+        <span class="menu-title">Organizacija zaposlenika</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="organisation" [ngbCollapse]="!organisationCollapsed">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" routerLink="Functions" routerLinkActive="active" #functions="routerLinkActive"><i class="material-icons">label_important</i>Funkcije</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="Departments" routerLinkActive="active" #departments="routerLinkActive"><i class="material-icons">label_important</i>Odjeli</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="Works" routerLinkActive="active" #works="routerLinkActive"><i class="material-icons">label_important</i>Radna mjesta</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="Branches" routerLinkActive="active" #branches="routerLinkActive"><i class="material-icons">label_important</i>Podružnice</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="Cities" routerLinkActive="active" #cities="routerLinkActive"><i class="material-icons">label_important</i>Gradovi</a></li>
+          <!-- <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/modals" routerLinkActive="active" #modals="routerLinkActive"><i class="mdi mdi-bank menu-icon"></i>Modals</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/notifications" routerLinkActive="active" #notifications="routerLinkActive"><i class="mdi mdi-bank menu-icon"></i>Notifications</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/progressbar" routerLinkActive="active" #progressbar="routerLinkActive"><i class="mdi mdi-bank menu-icon"></i>Progress bar</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/pagination" routerLinkActive="active" #pagination="routerLinkActive"><i class="mdi mdi-bank menu-icon"></i>Pagination</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/tabs" routerLinkActive="active" #tabs="routerLinkActive"><i class="mdi mdi-bank menu-icon"></i>Tabs</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/typography" routerLinkActive="active" #typography="routerLinkActive"><i class="mdi mdi-bank menu-icon"></i>Typography</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/tooltips" routerLinkActive="active" #tooltips="routerLinkActive"><i class="mdi mdi-bank menu-icon"></i>Tooltips</a></li> -->
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item" click="" [ngClass]="{ 'active': competitions.isActive }">
+      <a class="nav-link" routerLink="Competitions" routerLinkActive #competitions="routerLinkActive">
+        <i class="mdi mdi-file-document menu-icon"></i>
+        <span class="menu-title">Upravljanje zapošljavanjem</span>
+      </a>
+    </li>
+    <li class="nav-item" click="" [ngClass]="{ 'active': workingTime.isActive }">
+      <a class="nav-link" routerLink="WorkingTime" routerLinkActive #workingTime="routerLinkActive">
+        <i class="mdi mdi-calendar-clock menu-icon"></i>
+        <span class="menu-title">Upravljanje radnim vremenom</span>
+      </a>
+    </li>
+    <li class="nav-item" click="" [ngClass]="{ 'active': scoring.isActive }">
+      <a class="nav-link" routerLink="Scoring" routerLinkActive #scoring="routerLinkActive">
+        <i class="mdi mdi-chart-line menu-icon"></i>
+        <span class="menu-title">Upravljanje karijerom</span>
+      </a>
+    </li>
+    <li class="nav-item" click="" [ngClass]="{ 'active': contributors.isActive }">
+      <a class="nav-link" routerLink="Contributors" routerLinkActive #contributors="routerLinkActive">
+        <i class="mdi mdi-bookmark-plus-outline menu-icon"></i>
+        <span class="menu-title">Suradnici</span>
+      </a>
+    </li>
+    <li class="nav-item" click="" [ngClass]="{ 'active': expenses.isActive }">
+      <a class="nav-link" routerLink="Expenses" routerLinkActive #expenses="routerLinkActive">
+        <i class="mdi mdi-credit-card-scan menu-icon"></i>
+        <span class="menu-title">Troškovi</span>
+      </a>
+    </li>
+    <li class="nav-item" click="" [ngClass]="{ 'active': expenseTypes.isActive }">
+      <a class="nav-link" routerLink="ExpenseTypes" routerLinkActive #expenseTypes="routerLinkActive">
+        <i class="mdi mdi-credit-card-multiple menu-icon"></i>
+        <span class="menu-title">Tip troškova</span>
+      </a>
+    </li>
+    <li class="nav-item" click="" [ngClass]="{ 'active': administration.isActive }">
+      <a class="nav-link" routerLink="Administration" routerLinkActive #administration="routerLinkActive">
+        <i class="material-icons menu-icon">settings</i>
+        <!-- <i class="mdi mdi-settings menu-icon"></i> -->
+        <span class="menu-title">Administarcija</span>
+      </a>
+    </li>
+    <li class="nav-item" click="" [ngClass]="{ 'active': attachments.isActive }">
+      <a class="nav-link" routerLink="Attachments" routerLinkActive #attachments="routerLinkActive">
+        <i class="mdi mdi-attachment menu-icon"></i>
+        <span class="menu-title">Prilozi</span>
+      </a>
+    </li>
+    <li class="nav-item" click="" [ngClass]="{ 'active': icons.isActive }">
+      <a class="nav-link" routerLink="icons/mdi" routerLinkActive #icons="routerLinkActive">
+        <i class="mdi mdi-contacts menu-icon"></i>
+        <span class="menu-title">Icons</span>
+      </a>
+    </li>
+  </ul>
+</nav>

@@ -1,0 +1,82 @@
+<mat-card class="mat-elevation-z3" style="padding: 25px">
+    <img
+      mat-card-image
+      src="../../favicon.ico"
+      style="width: 100px; height: 80px"
+    />
+    <mat-card-header style=" display: block;"> 
+      <mat-card-subtitle class="title"
+        >Human Resources</mat-card-subtitle
+      >
+      <mat-card-title>Prijava korisnika</mat-card-title>
+      <mat-card-subtitle>Unesite svoje podatke za prijavu </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form
+        matForm
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()"
+        class="example-form"
+      >
+        <mat-form-field appearance="fill" style="width: 100%">
+          <mat-label>Korisničko ime</mat-label>
+          <input formControlName="username" type="text" matInput />
+          <mat-icon matSuffix color="primary">account_circle</mat-icon>
+          <mat-error *ngIf="f.username.hasError('required')">
+            Obavezan unos!
+        </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" style="width: 100%">
+          <mat-label>Lozinka</mat-label>
+          <input
+            formControlName="password"
+            [type]="isTextFieldType ? 'text' : 'password'"
+            matInput
+          />
+          <mat-icon
+            style="cursor: pointer"
+            matSuffix
+            color="primary"
+            (click)="togglePasswordFieldType()"
+            >{{isTextFieldType? 'visibility_off': 'visibility'}}</mat-icon
+          >
+          <mat-error *ngIf="f.password.hasError('required')">
+            Obavezan unos!
+        </mat-error>
+        </mat-form-field>
+        <br />
+        <!-- <mat-checkbox [disabled]="loading" formControlName="rememberMe">Zapamti me</mat-checkbox> -->
+        <br />
+          <span *ngIf="loginError.hasError" [innerHtml]="loginError.errorMessage" style="color: red"></span>
+        <button
+          [disabled]="loading"
+          mat-raised-button
+          class="button"
+          style="width: 100%"
+          color="primary"
+        >
+          <span
+            *ngIf="loading"
+            class="spinner-border spinner-border-sm mr-1"
+          ></span>
+          Prijavi se
+        </button>
+      </form>
+      <!-- <br />
+      <button mat-button color="primary" routerLink="/Account/ForgotPassword">
+        Zaboravljena lozinka?
+      </button> -->
+      <br />
+      <div style="display: flex; flex-direction: column;">
+        <a href="https://idconsulting.ba/" target="_blank">
+          <img
+            src="../../assets/images/IDC-LOGO.png"
+            class="logo"
+            alt="IDConsulting Sarajevo"
+        /></a>
+        <span class="name"> &copy; {{ date }}</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  

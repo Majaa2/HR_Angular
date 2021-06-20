@@ -1,0 +1,109 @@
+<div class="row">
+  <div class="col-md-5">
+    <div class="titleHeader">
+      <h6>Strani jezici</h6>
+      <hr />
+    </div>
+  </div>
+  <div class="col-md-7">
+    <div class="titleHeader">
+      <h6>Specijalnosti</h6>
+      <hr />
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-5">
+    <div class="row">
+      <div class="col-md-7">
+        <mat-form-field appearance="fill">
+          <mat-label>Strani jezik</mat-label>
+          <input type="text" matInput [(ngModel)]="languageName" />
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-form-field appearance="fill">
+          <mat-label>Razina</mat-label>
+          <select matNativeControl [(ngModel)]="languageLevel">
+            <option value="A1">A1</option>
+            <option value="A2">A2</option>
+            <option value="B1">B1</option>
+            <option value="B2">B2</option>
+            <option value="C1">C1</option>
+            <option value="C2">C2</option>
+          </select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-2">
+        <button
+          (click)="SaveLanguage()"
+          mat-mini-fab
+          color="accent"
+          style="color: white"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <div class="col-md-12" >
+        <mat-card *ngFor="let lang of languages" style="background-color: bisque; padding: 3px; margin: 5px;">
+          <div class="row" style="text-align: center;
+          align-items: center;">
+            <div class="col-md-7">
+              {{ lang.languageName }}
+            </div>
+            <div class="col-md-3">
+              {{ lang.languageLevel }}
+            </div>
+            <div class="col-md-2">
+              <button
+                mat-icon-button
+                color="accent"
+                style="color: red"
+                (click)="RemoveLanguage(lang.id)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-7">
+    <form matForm [formGroup]="form">
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field appearance="fill">
+            <mat-label>Specijalna znanja i vještine</mat-label>
+            <textarea
+              type="text"
+              rows="6"
+              matInput
+              formControlName="SpecialKnowledgeAndSkills"
+            ></textarea>
+            <!-- <mat-error *ngIf="getForma.LastName.hasError('required')">
+                        Obavezan unos!
+                    </mat-error> -->
+          </mat-form-field>
+
+        </div>
+        <div class="col-md-6">
+          <mat-form-field appearance="fill">
+            <mat-label>Invalidnost</mat-label>
+            <input type="text" matInput formControlName="Disability" />
+            <!-- <mat-error *ngIf="getForma.LastName.hasError('required')">
+                        Obavezan unos!
+                    </mat-error> -->
+          </mat-form-field>
+          <mat-form-field appearance="fill" >
+            <mat-label>Krvna grupa</mat-label>
+            <input type="text" matInput formControlName="BloodType" />
+            <!-- <mat-error *ngIf="getForma.LastName.hasError('required')">
+                        Obavezan unos!
+                    </mat-error> -->
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

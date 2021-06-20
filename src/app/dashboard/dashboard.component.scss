@@ -1,0 +1,113 @@
+@import '../../styles.scss';
+
+a,
+.card__exit,
+.card__icon {
+  position: relative;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+a::after {
+  position: absolute;
+  top: 25px;
+  left: 0;
+  content: "";
+  width: 0%;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.6);
+  transition: all 0.5s;
+}
+a:hover{
+  color: #fff;
+  text-decoration: none;
+}
+a:hover::after {
+  width: 100%;
+  
+}
+
+.main-container {
+  padding: 30px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card {
+  // margin: 20px;
+  padding: 20px;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 20px 50px 1fr 50px;
+  border-radius: 10px;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+  transition: all 0.5s;
+}
+
+.card:hover {
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.4);
+  transform: scale(1.05);
+}
+
+.card__exit {
+  grid-row: 1/2;
+  justify-self: end;
+}
+
+.card__icon {
+  grid-row: 2/3;
+  font-size: 30px;
+}
+
+.card__title {
+  grid-row: 3/4;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.card__subtitle {
+  grid-row: 3/4;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.card-1 {
+  // background-color: lighten($primary, 30%);
+  background-color: $primary;
+  .card__apply {
+  border-top: white 1px solid;
+  grid-row: 4/5;
+  align-self: end;
+  color: $primary;
+}
+}
+
+.card-2 {
+  // background-color: lighten($accent, 30%);
+  background-color: $accent;
+  .card__apply {
+  border-top: white 1px solid;
+  grid-row: 4/5;
+  align-self: end;
+  color: $accent;
+}
+}
+
+.menu-icon {
+  font-size: 2.8rem;
+  line-height: 1;
+  padding-right: 5px;
+  // margin-left: auto;
+  .rtl & {
+    margin-left: 0;
+    margin-right: auto;
+  }
+  color: #fff;
+  &:before {
+    vertical-align: middle;
+  }
+}

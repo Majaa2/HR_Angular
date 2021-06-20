@@ -1,0 +1,40 @@
+import { Department } from "./department.model";
+import { Employee } from "./employee.model";
+import { Work } from "./work.model";
+
+export class Scoring{
+    id!: number;
+    by!: string;
+    goalsNext12Month!: string;
+    dateOfFirstConversation!: Date;
+    neededEducation!: string;
+    firstQuarterPlanDate!: Date;
+    firstQuarterDate!: Date;
+    firstQuarterNotes!: string;
+    firstQuarterEduNotes!: string;
+    secondQuarterPlanDate!: Date;
+    secondQuarterDate!: Date;
+    secondQuarterNotes!: string;
+    secondQuarterEduNotes!: string;
+    thirdQuarterPlanDate!: Date;
+    thirdQuarterDate!: Date;
+    thirdQuarterNotes!: string;
+    thirdQuarterEduNotes!: string;
+    rewardingEmployee!: string;
+    markFinal!: string;
+    markFinalNotes!: string;
+    finalDate!: Date;
+    year!: number;
+    employeeId!: number;
+    employee!: Employee;
+    workId!: number;
+    work!: Work;
+    departmentId!: number;
+    department!: Department;
+    created!: Date;
+    modfied!: Date;
+    createdBy!: string;
+    modifiedBy!: string;
+    deleted!: boolean;
+    active!: boolean;
+}

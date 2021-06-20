@@ -1,0 +1,89 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="titleHeader">
+            <h6>Kontakt podatci</h6>
+            <hr />
+        </div>        
+    </div>
+    <div class="col-md-8">
+        <div class="titleHeader">
+            <h6>Prebivalište</h6>
+            <hr />
+        </div>        
+    </div>
+</div>
+<form matForm [formGroup]="form">
+    <div class="row">
+        <div class="col-md-4">
+            <mat-form-field appearance="fill">
+                <mat-label>Broj telefona*</mat-label>
+                <input type="text" matInput formControlName="PhoneNumber" />
+                <mat-error *ngIf="getContactForm.PhoneNumber.hasError('required')">
+                Obavezan unos!
+            </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Broj mobitela*</mat-label>
+                <input type="text" matInput formControlName="MobilePhone" />
+                <mat-error *ngIf="getContactForm.MobilePhone.hasError('required')">
+                Obavezan unos!
+            </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Email*</mat-label>
+                <input type="text" matInput formControlName="Email" />
+                <mat-error *ngIf="getContactForm.Email.hasError('required')">
+                Obavezan unos!
+            </mat-error>
+            <mat-error *ngIf="getContactForm.Email.hasError('email')">
+               Unesite e-mail u ispravnom formatu!
+            </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="fill">
+                <mat-label>Entitet prebivališta</mat-label>
+                <select matNativeControl formControlName="EntityOfResidence">
+                    <option value="Distrikt Brčko">Distrikt Brčko</option>
+                    <option value="Federacija Bosna i Hercegovina">Federacija Bosna i Hercegovina</option>
+                    <option value="Republika Srpska">Republika Srpska</option>
+                    <option value="Ostalo">Ostalo</option>
+                </select>
+            </mat-form-field>
+        
+            <mat-form-field appearance="fill">
+                <mat-label>Općina prebivališta</mat-label>
+                <input type="text" matInput formControlName="Municipality" />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Mjesto*</mat-label>
+                <input type="text" matInput formControlName="Place" />
+                <mat-error *ngIf="getContactForm.Place.hasError('required')">
+                Obavezan unos!
+            </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="fill">
+                <mat-label>Županija</mat-label>
+                <input type="text" matInput formControlName="County" />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Grad*</mat-label>
+                <select matNativeControl formControlName="CityId">
+                    <option *ngFor="let city of cities;" [value]="city.Id">{{city.Name}}</option>
+                </select>
+                <mat-error *ngIf="getContactForm.CityId.hasError('required')">
+                Obavezan unos!
+            </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Adresa*</mat-label>
+                <input type="text" matInput formControlName="Address" />
+                <mat-error *ngIf="getContactForm.Address.hasError('required')">
+                Obavezan unos!
+            </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+</form>
